@@ -4,13 +4,14 @@ import React from 'react';
 import styled, {css} from 'styled-components'; 
 
 const Button = styled.button`
-  background:white;
-  border: 5px solid black; 
+  transition: all .3s;
+  background:${props=> props.theme.backgroundColor};
+  border: 5px solid ${props => props.theme.primaryColor}; 
   font-size: 20px; 
-  color: black;
+  outline:none;
+  color: ${props => props.theme.primaryColor};`
 
-  ${props=> props.primary && css`
-  background:red;`}
-  `;
+
 
 export default Button; 
+
