@@ -9,6 +9,8 @@ node_modules
 img/
 .next/
 
+public/
+index.html
 
 front/path/to
 back/path/to

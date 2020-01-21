@@ -7,3 +7,12 @@ export function useOpenFood(){
     setOpenFood
   }
 }
+
+
+// export function useOpenFood(){
+//   const [openFood, setOpenFood] = useState();
+//   return {
+//     openFood, 
+//     setOpenFood
+//   }
+// }
