@@ -8,6 +8,7 @@ import Settings from '../Settings';
 import Content from '../Shared/Content'; 
 
 import Applayout from './AppLayout'; 
+import DashBoard from "../Dashboard"; 
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <AppBar/>
           <Content>
             <Settings/>
+            <DashBoard/>
           </Content>
       </AppProvider>
     </Applayout>

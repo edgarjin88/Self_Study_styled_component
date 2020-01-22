@@ -8,23 +8,50 @@ import CoinTile from "./CoinTile"
 export const CoinGridStyled = styled.div`
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 5fr));
   margin-top: 30px;
 `
-function getCoinsToDisplay(coinList, topSection, favorites){
-  return topSection ? favorites : Object.keys(coinList).slice(0, 100);
+
+function getLowerSectionCoins(coinList, filteredCoins){
+  return (filteredCoins && Object.keys(filteredCoins)) ||
+    Object.keys(coinList).slice(0, 100)
 }
 
+
+// function getLowerSectionCoins(coinList, filteredCoins) {
+//   return (
+//     (filteredCoins && Object.keys(filteredCoins)) ||
+//     Object.keys(coinList).slice(0, 100)
+//   );
+// }
+
+
+function getCoinsToDisplay(coinList, topSection, favorites, filteredCoins) {
+  return topSection ? favorites : getLowerSectionCoins(coinList, filteredCoins);
+}
+
+
 export default function({topSection}){
-  return <AppContext.Consumer>
-    {
-    ({coinList, favorites})=><CoinGridStyled>
-      {getCoinsToDisplay(coinList, topSection, favorites).map((coinKey) =>{
-        console.log('coinKey here!', coinKey);
-       return <CoinTile topSection={topSection} coinKey={coinKey}/>
-      }
-      )
-      }
-      </CoinGridStyled>}
-  </AppContext.Consumer>
+  return (
+    <AppContext.Consumer>
+      {({ coinList, favorites, filteredCoins }) => (
+        <CoinGridStyled>
+          {getCoinsToDisplay(
+            coinList,
+            topSection,
+            favorites,
+            filteredCoins
+          ).map(coinKey => {
+            // console.log("csoinKey here!", coinKey);
+            return <CoinTile
+                key={coinKey}
+                topSection={topSection}
+                coinKey={coinKey}
+              />
+           
+          })}
+        </CoinGridStyled>
+      )}
+    </AppContext.Consumer>
+  );
 }

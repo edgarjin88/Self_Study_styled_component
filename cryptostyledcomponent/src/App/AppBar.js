@@ -19,7 +19,8 @@ const ControlButtonElem = styled.div`
     color: brown;
     transition: all .8s;
     border-bottom: 1px solid brown;
-    
+  ${props => props.hidden && css`
+    display:none; `}
   `}
 `
 function toProperCase(lower){
